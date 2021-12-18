@@ -21,6 +21,10 @@
             <div class="card-body">
                 {!! Form::model($permission, ['route' => ['permissions.update', $permission->id], 'method'=>'PATCH']) !!}
                     <div class="form-group">
+                        <strong>Title:</strong>
+                        {!! Form::text('title', null, array('placeholder' => 'Title','class' => 'form-control')) !!}
+                    </div>
+                    <div class="form-group">
                         <strong>Name:</strong>
                         {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
                     </div>
