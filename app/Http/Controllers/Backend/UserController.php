@@ -1,38 +1,37 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use Spatie\Permission\Models\Role;
+
+
 
 class UserController extends Controller
 {
-
     function __construct()
     {
-         $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','store']]);
-         $this->middleware('permission:user-create', ['only' => ['create','store']]);
-         $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
     }
 
     public function index(Request $request)
     {
-        // $data = User::orderBy('id', 'desc')->paginate(5);
-        $data = User::orderBy('id', 'desc')->get();
+        $users = User::orderBy('id', 'desc')->get();
 
-
-        return view('backend.users.index', compact('data'));
+        return view('backend.users.index', compact('users'));
     }
 
     public function create()
     {
-        $roles = Role::pluck('name','name')->all();
+        $roles = Role::pluck('name', 'name')->all();
 
         return view('backend.users.create', compact('roles'));
     }
@@ -53,38 +52,38 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('users.index')
-            ->with('success', 'User created successfully.');
+
+        ->with('success', __('alerts.User created successfully'));
     }
 
     public function show($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
-        return view('users.show', compact('user'));
+        return view('backend.users.show', compact('user'));
     }
 
     public function edit($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
 
-        return view('users.edit', compact('user', 'roles', 'userRole'));
+        return view('backend.users.edit', compact('user', 'roles', 'userRole'));
     }
-
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
+            'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'confirmed',
             'roles' => 'required'
         ]);
 
         $input = $request->all();
 
-        if(!empty($input['password'])) {
+        if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
         } else {
             $input = Arr::except($input, array('password'));
@@ -94,21 +93,20 @@ class UserController extends Controller
         $user->update($input);
 
         DB::table('model_has_roles')
-            ->where('model_id', $id)
+        ->where('model_id', $id)
             ->delete();
 
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('users.index')
-            ->with('success', 'User updated successfully.');
+        ->with('success', __('alerts.User updated successfully'));
     }
-
 
     public function destroy($id)
     {
         User::find($id)->delete();
 
         return redirect()->route('users.index')
-            ->with('success', 'User deleted successfully.');
+        ->with('success', __('alerts.User deleted successfully'));
     }
 }

@@ -1,16 +1,16 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="justify-content-center">
         @if (\Session::has('success'))
             <div class="alert alert-success">
                 <p>{{ \Session::get('success') }}</p>
             </div>
         @endif
+    <div class="justify-content-center">
         <div class="card">
-            <div class="card-header">Users
+            <div class="card-header">@lang('dashboard.Users')
                 <span class="float-right">
-                    <a class="btn btn-primary" href="{{ route('users.create') }}">New User</a>
+                    <a class="btn btn-primary" href="{{ route('users.create') }}">@lang('dashboard.New User')</a>
                 </span>
             </div>
             <div class="card-body">

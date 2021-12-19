@@ -20,19 +20,24 @@
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('posts.store') }}">
+                <form method="POST" action="{{ route('pages.store') }}">
                     @csrf
 
-                    @foreach(config('translatable.locales') as $locale)
                         <div class="form-group">
-                            <strong> @lang('Title') ({{ strtoupper($locale) }}):</strong>
-                            <input  class="form-group" type="text" name="{{ $locale }}[title]"  value="{{ old($locale . '.title') }}" required/>
+                            <strong> @lang('Title')</strong>
+                            <input  class="form-group" type="text" name="title"   required/>
                         </div>
+
                         <div class="form-group">
-                            <strong>@lang('Text') ({{ strtoupper($locale) }}):</strong>
-                            <input class="form-group" type="text" name="{{ $locale }}[text]"  value="{{ old($locale . '.text') }}" required/>
+                            <strong>@lang('Text')</strong>
+                            <input class="form-group" type="text" name="text"  required/>
                         </div>
-                    @endforeach
+
+                        <div class="form-group">
+                            <strong>@lang('Currency')</strong>
+                            <input class="form-group" type="number" name="currency"  required/>
+                        </div>
+
                     <button type="submit" class="btn btn-primary">@lang('Submit')</button>
                 </form>
             </div>

@@ -47,6 +47,9 @@
                             @can('post-list')
                                 <li><a class="nav-link" href="{{ route('posts.index') }}">Posts</a></li>
                             @endcan
+                            @can('page-list')
+                                <li><a class="nav-link" href="{{ route('pages.index') }}">Pages</a></li>
+                            @endcan
 
 
 
