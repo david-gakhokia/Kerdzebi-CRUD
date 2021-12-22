@@ -26,12 +26,13 @@
                         @csrf
                         <div class="form-group">
                             <p>@lang('dashboard.Title')</p>
-                            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
-                        </div>
-                        <div class="form-group">
-                            <p>@lang('dashboard.Title')</p>
                             {!! Form::text('title', null, array('placeholder' => 'title','class' => 'form-control')) !!}
                         </div>
+                        <div class="form-group">
+                            <p>@lang('dashboard.Name')</p>
+                            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                        </div>
+
 
                         <div class="card-footer text-right">
                             <button class="btn btn-success"><i class="fas fa-save"></i> @lang('dashboard.Save')</button>

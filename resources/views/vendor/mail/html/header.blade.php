@@ -4,6 +4,8 @@
 @if (trim($slot) === 'Laravel')
 <img src="https://laravel.com/img/notification-logo.png" class="logo" alt="Laravel Logo">
 @else
+<img src="https://diem.ge/storage/logo.png" class="logo" alt="DMG Logo">
+<br>
 {{ $slot }}
 @endif
 </a>

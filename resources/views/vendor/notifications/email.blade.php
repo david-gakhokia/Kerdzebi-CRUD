@@ -4,9 +4,9 @@
 # {{ $greeting }}
 @else
 @if ($level === 'error')
-# @lang('Whoops!')
+# @lang('email.Whoops')
 @else
-# @lang('Hello!')
+# @lang('email.Hello')
 @endif
 @endif
 
@@ -43,7 +43,7 @@
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-@lang('Regards'),<br>
+@lang('email.Regards'),<br>
 {{ config('app.name') }}
 @endif
 
@@ -51,7 +51,7 @@
 @isset($actionText)
 @slot('subcopy')
 @lang(
-    "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below\n".
+    "თუ გიჭირთ დააწკაპუნოთ \":actionText\" button, copy and paste the URL below\n".
     'into your web browser:',
     [
         'actionText' => $actionText,

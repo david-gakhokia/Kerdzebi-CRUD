@@ -9,6 +9,10 @@ use App\Http\Controllers\PostController;
 
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\PageController;
+use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\ContactController;
+
+
 
 
 Route::get('/', function () {
@@ -30,8 +34,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('roles', RoleController::class);
     Route::resource('posts', PostController::class);
     Route::resource('pages', PageController::class);
-    
-    Route::get('dashboard', function () {
-        return view('backend.dashboard');
-    });
+
+    Route::resource('contacts', ContactController::class);
+
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+
+    // Route::get('dashboard', function () {
+    //     return view('backend.dashboard');
+    // });
 });

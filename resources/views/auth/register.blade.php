@@ -1,77 +1,37 @@
-@extends('layouts.app')
+@extends('auth.layouts.app')
+
+@section('title', __('auth.Register'))
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+<div class="card card-primary">
+    <div class="card-header">
+      <h4>@lang('auth.Registration suspended')!</h4>
+    </div>
+    <div class="card-body">
+        <div class="alert alert-light alert-has-icon">
+            <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+            <div class="alert-body">
+              <p> @lang('auth.Unfortunately registration is not possible')! </p>
             </div>
+        </div>
+        <a class="btn btn-link" href="{{ route('login') }}">
+            <i class="far fa-user"></i> {{ __('auth.Authorization') }}
+        </a>
+
+        <div class="form-group text-center">
+            <a href="?language=en" data-toggle="tooltip" title="English">
+                <img src="https://img.icons8.com/emoji/32/000000/united-kingdom-emoji.png"/>
+            </a>
+            <a href="?language=ka" data-toggle="tooltip" title="ქართული">
+                <img src="https://img.icons8.com/emoji/32/000000/georgia-emoji.png"/>
+            </a>
+            <a href="?language=ru" data-toggle="tooltip" title="Pусский">
+                <img src="https://img.icons8.com/emoji/32/000000/russia-emoji.png"/>
+            </a>
         </div>
     </div>
 </div>
+
 @endsection

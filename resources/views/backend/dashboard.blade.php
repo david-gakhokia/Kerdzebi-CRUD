@@ -1,142 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    @include('backend.body.head')
-</head>
+@extends('backend.layouts.app')
 
-<body>
-  <div class="loader"></div>
-  <div id="app">
-    <div class="main-wrapper main-wrapper-1">
-      <div class="navbar-bg"></div>
-        @include('backend.body.navbar')
-        @include('backend.body.sidebar')
-      <!-- Main Content -->
-      <div class="main-content">
-        <section class="section">
-          <ul class="breadcrumb breadcrumb-style ">
-            <li class="breadcrumb-item">
-              <h4 class="page-title m-b-0">Blank</h4>
-            </li>
-            <li class="breadcrumb-item">
-              <a href="index.html">
-                <i data-feather="home"></i></a>
-            </li>
-            <li class="breadcrumb-item">Blank Page</li>
-          </ul>
-          <div class="section-body">
-            <!-- add content here -->
-          </div>
-        </section>
-        <div class="settingSidebar">
-          <a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
-          </a>
-          <div class="settingSidebar-body ps-container ps-theme-default">
-            <div class=" fade show active">
-              <div class="setting-panel-header">Setting Panel
-              </div>
-              <div class="p-15 border-bottom">
-                <h6 class="font-medium m-b-10">Select Layout</h6>
-                <div class="selectgroup layout-color w-50">
-                  <label class="selectgroup-item">
-                    <input type="radio" name="value" value="1" class="selectgroup-input-radio select-layout" checked>
-                    <span class="selectgroup-button">Light</span>
-                  </label>
-                  <label class="selectgroup-item">
-                    <input type="radio" name="value" value="2" class="selectgroup-input-radio select-layout">
-                    <span class="selectgroup-button">Dark</span>
-                  </label>
+@section('title', 'Dashboard')
+
+@section('content')
+<div class="row">
+    @can('page-list')
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <a href="{{ route('pages.index') }}">
+            <div class="card card-statistic-1">
+                <div class="card-icon l-bg-purple">
+                <i class="fas fa-hiking"></i>
                 </div>
-              </div>
-              <div class="p-15 border-bottom">
-                <h6 class="font-medium m-b-10">Sidebar Color</h6>
-                <div class="selectgroup selectgroup-pills sidebar-color">
-                  <label class="selectgroup-item">
-                    <input type="radio" name="icon-input" value="1" class="selectgroup-input select-sidebar">
-                    <span class="selectgroup-button selectgroup-button-icon" data-toggle="tooltip"
-                      data-original-title="Light Sidebar"><i class="fas fa-sun"></i></span>
-                  </label>
-                  <label class="selectgroup-item">
-                    <input type="radio" name="icon-input" value="2" class="selectgroup-input select-sidebar" checked>
-                    <span class="selectgroup-button selectgroup-button-icon" data-toggle="tooltip"
-                      data-original-title="Dark Sidebar"><i class="fas fa-moon"></i></span>
-                  </label>
+                <div class="card-wrap">
+                <div class="padding-20">
+                    <div class="text-right">
+                    <h3 class="font-light mb-0">
+                        <i class="ti-arrow-up text-success"></i> {{ $pages->count() }}
+                    </h3>
+                    <span class="text-muted">@lang('dashboard.Pages')</span>
+                    </div>
                 </div>
-              </div>
-              <div class="p-15 border-bottom">
-                <h6 class="font-medium m-b-10">Color Theme</h6>
-                <div class="theme-setting-options">
-                  <ul class="choose-theme list-unstyled mb-0">
-                    <li title="white" >
-                      <div class="white"></div>
-                    </li>
-                    <li title="cyan">
-                      <div class="cyan"></div>
-                    </li>
-                    <li title="black">
-                      <div class="black"></div>
-                    </li>
-                    <li title="purple">
-                      <div class="purple" class="active"></div>
-                    </li>
-                    <li title="orange">
-                      <div class="orange"></div>
-                    </li>
-                    <li title="green">
-                      <div class="green"></div>
-                    </li>
-                    <li title="red">
-                      <div class="red"></div>
-                    </li>
-                  </ul>
                 </div>
-              </div>
-              <div class="p-15 border-bottom">
-                <div class="theme-setting-options">
-                  <label class="m-b-0">
-                    <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
-                      id="mini_sidebar_setting">
-                    <span class="custom-switch-indicator"></span>
-                    <span class="control-label p-l-10">Mini Sidebar</span>
-                  </label>
-                </div>
-              </div>
-              <div class="p-15 border-bottom">
-                <div class="theme-setting-options">
-                  <label class="m-b-0">
-                    <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
-                      id="sticky_header_setting">
-                    <span class="custom-switch-indicator"></span>
-                    <span class="control-label p-l-10">Sticky Header</span>
-                  </label>
-                </div>
-              </div>
-              <div class="mt-4 mb-4 p-3 align-center rt-sidebar-last-ele">
-                <a href="#" class="btn btn-icon icon-left btn-primary btn-restore-theme">
-                  <i class="fas fa-undo"></i> Restore Default
-                </a>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <footer class="main-footer">
-        <div class="footer-left">
-          Copyright &copy; {{ date('Y') }} <div class="bullet"></div> Powered By <a href="https://diem.ge">DMG</a>
-        </div>
-        <div class="footer-right">
-        </div>
-      </footer>
+        </a>
     </div>
-  </div>
-  <!-- General JS Scripts -->
-  <script src="{{ asset('backend/js/app.min.js') }}"></script>
-  <!-- JS Libraies -->
-  <!-- Page Specific JS File -->
-  <!-- Template JS File -->
-  <script src="{{ asset('backend/js/scripts.js') }}"></script>
-  <!-- Custom JS File -->
-  <script src="{{ asset('backend/js/custom.js') }}"></script>
-</body>
+    @endcan
 
-</html>
+    @can('post-list')
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <a href="{{ route('posts.index') }}">
+            <div class="card card-statistic-1">
+                <div class="card-icon l-bg-green">
+                <i class="fas fa-file-signature"></i>
+                </div>
+                <div class="card-wrap">
+                <div class="padding-20">
+                    <div class="text-right">
+                    <h3 class="font-light mb-0">
+                        <i class="ti-arrow-up text-success"></i> {{ $posts->count() }}
+                    </h3>
+                    <span class="text-muted">@lang('dashboard.Posts')</span>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    @endcan
+
+    @can('user-list')
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <a href="{{ route('users.index') }}">
+            <div class="card card-statistic-1">
+                <div class="card-icon l-bg-cyan">
+                <i class="fas fa-users"></i>
+                </div>
+                <div class="card-wrap">
+                <div class="padding-20">
+                    <div class="text-right">
+                    <h3 class="font-light mb-0">
+                        <i class="ti-arrow-up text-success"></i> {{ $users->count() }}
+                    </h3>
+                    <span class="text-muted">@lang('dashboard.Users')</span>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    @endcan
+
+    @can('user-list')
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <a href="#0">
+            <div class="card card-statistic-1">
+                <div class="card-icon l-bg-orange">
+                <i class="far fa-bell"></i>
+                </div>
+                <div class="card-wrap">
+                <div class="padding-20">
+                    <div class="text-right">
+                    <h3 class="font-light mb-0">
+                        <i class="ti-arrow-up text-success"></i> {{ $users->count() }}
+                    </h3>
+                    <span class="text-muted">@lang('dashboard.Notifications')</span>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    @endcan
+
+</div>
+
+@endsection
+

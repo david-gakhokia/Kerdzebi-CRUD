@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Page;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -14,7 +17,19 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        //
+        $pages = Page::get();
+        $posts = Post::get();
+        $users = User::get();
+
+
+        return view(
+            'backend.dashboard',
+            compact([
+                'pages',
+                'posts',
+                'users',
+            ])
+        );
     }
 
     /**
