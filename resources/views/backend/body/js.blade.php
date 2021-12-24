@@ -39,4 +39,11 @@
   <script src="{{ asset('backend/js/page/form-wizard.js') }}"></script>
 
 
+  <!-- JS Libraies -->
+  <script src="{{ asset('backend/bundles/sweetalert/sweetalert.min.js') }}"></script>
+  <!-- Page Specific JS File -->
+  <script src="{{ asset('backend/js/page/note.js') }}"></script>
+
+
+
 

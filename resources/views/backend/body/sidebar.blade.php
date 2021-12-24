@@ -41,7 +41,7 @@
             </li>
             @can('contact-list')
             <li class="dropdown">
-                <a href="{{ route('contacts.index') }}" class="nav-link"><i data-feather="mail"></i><span>@lang('dashboard.Contact')</span></a>
+                <a href="{{ route('contacts.index') }}" class="nav-link"><i data-feather="mail"></i><span>@lang('dashboard.Notifications')</span></a>
             </li>
             @endcan
 

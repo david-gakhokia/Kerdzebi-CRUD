@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreContactRequest;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+
 
 class ContactController extends Controller
 {
@@ -19,13 +21,12 @@ class ContactController extends Controller
     public function create()
     {
         return view('backend.contacts.create');
-
     }
 
-    public function store( StoreContactRequest $request)
+    public function store(StoreContactRequest $request)
     {
-        Contact::create($request->validated());
 
+        Contact::create($request->validated());
 
         return redirect()->route('contacts.index')->with('success', 'Data Aded');
     }
@@ -47,8 +48,10 @@ class ContactController extends Controller
         //
     }
 
-    public function destroy($id)
+
+    public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+        return redirect()->route('contacts.index')->with('success', __('alerts.Record has been deleted'));
     }
 }

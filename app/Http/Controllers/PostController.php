@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
-
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -52,7 +52,12 @@ class PostController extends Controller
 
     public function store(StorePostRequest $request)
     {
-        Post::create($request->validated());
+
+
+        Post::create($request->validated() + [
+            'user_id' => auth()->id(),
+
+        ]);
 
         return redirect()->route('posts.index')
         ->with('success', 'Post created successfully.');

@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\ContactController;
+use App\Http\Controllers\Backend\ClientController;
 
 
 
@@ -23,6 +24,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::resource('contacts', ContactController::class);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
@@ -35,7 +37,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('posts', PostController::class);
     Route::resource('pages', PageController::class);
 
-    Route::resource('contacts', ContactController::class);
+    Route::resource('clients', ClientController::class);
+
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
