@@ -27,7 +27,7 @@
             </div>
           </div>
           <ul class="sidebar-menu">
-            <li class="menu-header">Main</li>
+            <li class="menu-header"></li>
             <li class="dropdown">
               <a href="{{ route('dashboard') }}" class="nav-link"><i data-feather="monitor"></i><span>@lang('dashboard.Dashboard')</span></a>
             </li>
@@ -39,13 +39,18 @@
             <li class="dropdown">
               <a href="{{ route('posts.index') }}" class="nav-link"><i data-feather="copy"></i><span>@lang('dashboard.Pages')</span></a>
             </li>
+
+            <li class="dropdown">
+              <a href="{{ route('clients.index') }}" class="nav-link"><i data-feather="briefcase"></i><span>@lang('dashboard.Clients')</span></a>
+            </li>
+
             @can('contact-list')
             <li class="dropdown">
                 <a href="{{ route('contacts.index') }}" class="nav-link"><i data-feather="mail"></i><span>@lang('dashboard.Notifications')</span></a>
             </li>
             @endcan
 
-            <li class="menu-header">Apps</li>
+            <li class="menu-header"><hr></li>
             <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="users"></i><span>@lang('dashboard.Users')</span></a>
               <ul class="dropdown-menu">

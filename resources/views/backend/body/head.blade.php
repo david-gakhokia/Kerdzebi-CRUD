@@ -39,7 +39,7 @@
 <link rel="stylesheet" href="//cdn.web-fonts.ge/fonts/bpg-arial-caps/css/bpg-arial-caps.min.css" />
 
 <style>
-    h1,h2,h3,h4,h5,h6 ,p,a ,button{
+    h1,h2,h3,h4,h5,h6 ,p,a,th,td,button{
     /* font-family: "BPG Arial Caps", sans-serif !important; */
     /* font-family: "BPG Glaho WEB", sans-serif !important; */
     /* font-family: "BPG Glaho Arial", sans-serif !important; */

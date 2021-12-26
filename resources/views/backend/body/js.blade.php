@@ -44,6 +44,9 @@
   <!-- Page Specific JS File -->
   <script src="{{ asset('backend/js/page/note.js') }}"></script>
 
+  @include('sweetalert::alert')
+
+
 
 
 

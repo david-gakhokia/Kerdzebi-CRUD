@@ -7,19 +7,17 @@
 
 
         <section class="section">
-          <ul class="breadcrumb breadcrumb-style ">
-            <li class="breadcrumb-item">
-              <h4 class="page-title m-b-0">Data Tables</h4>
-            </li>
-            <li class="breadcrumb-item">
-              <a href="index.html">
-                <i data-feather="home"></i></a>
-            </li>
-            <li class="breadcrumb-item">Tables</li>
-            <li class="breadcrumb-item">Data Tables</li>
-          </ul>
-          <div class="section-body">
+            <ul class="breadcrumb breadcrumb-style ">
+                <li class="breadcrumb-item">
+                <a href="{{ route('dashboard') }}">
+                    <i data-feather="home"></i></a>
+                </li>
+                <li class="breadcrumb-item">
+                <h4 class="page-title m-b-0">@lang('dashboard.Clients')</h4>
+                </li>
+            </ul>
 
+          <div class="section-body">
             <div class="row">
               <div class="col-12">
                 <div class="card">
@@ -51,30 +49,45 @@
                           </tr>
                         </thead>
                         <tbody>
-
-                          <tr>
-                            <td class="text-center pt-2">
-                              <div class="custom-checkbox custom-control">
-                                <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
-                                  id="checkbox-2">
-                                <label for="checkbox-2" class="custom-control-label">&nbsp;</label>
-                              </div>
-                            </td>
-                            <td>Redesign homepage</td>
-                            <td class="align-middle">
-                              <div class="progress progress-xs">
-                                <div class="progress-bar width-per-60"></div>
-                              </div>
-                            </td>
-                            <td>
-                              <img alt="image" src="{{ asset('backend/img/users/user-1.png') }}" width="35">
-                            </td>
-                            <td>2018-04-10</td>
-                            <td>
-                              <div class="badge badge-info badge-shadow">Todo</div>
-                            </td>
-                            <td><a href="#" class="btn btn-primary">Detail</a></td>
-                          </tr>
+                            @foreach ($clients as $item )
+                            <tr>
+                                <td class="text-center pt-2">
+                                <div class="custom-checkbox custom-control">
+                                    <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
+                                    id="checkbox-2">
+                                    <label for="checkbox-2" class="custom-control-label">&nbsp;</label>
+                                </div>
+                                </td>
+                                <td>{{ $item->name }} </td>
+                                <td class="align-middle">
+                                    <a href="{{ $item->link }}" target="_blank">{{ $item->link }}</a>
+                                </td>
+                                <td>
+                                <img src="{{ asset('uploads/clients/'.$item->image) }}" width="50" alt="{{ $item->title }}">
+                                </td>
+                                {{-- <td>{{ $item->created_at }}</td> --}}
+                                <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y')}} </td>
+                                <td>
+                                <div class="badge badge-info badge-shadow">{{ $item->status }}</div>
+                                </td>
+                                <td>
+                                    @can('client-edit')
+                                    <a href="{{ route('clients.edit',$item->id) }}" class="btn btn-icon btn-primary" data-toggle="tooltip" data-original-title="{{__('dashboard.Edit')}}">
+                                        <i class="far fa-edit"></i>
+                                    </a>
+                                    @endcan
+                                    @can('client-delete')
+                                        <form action="{{ route('clients.destroy',$item->id) }}" method="POST" >
+                                        @csrf
+                                        @method("DELETE")
+                                            <button type="submit" class="btn btn-icon btn-danger" data-toggle="tooltip" data-original-title="{{__('dashboard.Delete')}}">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </form>
+                                    @endcan
+                                </td>
+                            </tr>
+                            @endforeach
 
                         </tbody>
                       </table>

@@ -9,5 +9,5 @@ class ClientTranslation extends Model
 {
     use HasFactory;
     public $timestamps = true;
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'description', 'client_id', 'link', 'status'];
 }

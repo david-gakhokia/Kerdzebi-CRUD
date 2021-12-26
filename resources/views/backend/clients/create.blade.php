@@ -2,27 +2,34 @@
 
 @section('title', __('dashboard.Clients'))
 
-  {{-- <link rel="stylesheet" href="{{ asset('backend/css/app.min.css' ) }}">
-  <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ asset('backend/css/style.css' ) }}">
-  <link rel="stylesheet" href="{{ asset('backend/css/components.css' ) }}">
-  <!-- Custom style CSS -->
-  <link rel="stylesheet" href="{{ asset('backend/css/custom.css' ) }}"> --}}
-
 @section('content')
 
 
         <section class="section">
-          <ul class="breadcrumb breadcrumb-style ">
-            <li class="breadcrumb-item">
-              <h4 class="page-title m-b-0">Notes</h4>
-            </li>
-            <li class="breadcrumb-item">
-              <a href="index.html">
-                <i data-feather="home"></i></a>
-            </li>
-            <li class="breadcrumb-item">Notes</li>
-          </ul>
+            @if (count($errors) > 0)
+                <div class="alert alert-danger alert-dismissible fade show mb-2 " role="alert">
+                    <strong>Opps!</strong> Something went wrong, please check below errors.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+
+                    <button type="button" class="close" users-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+            <ul class="breadcrumb breadcrumb-style ">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('dashboard') }}">
+                        <i data-feather="home"></i>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <h4 class="page-title m-b-0">@lang('dashboard.Clients')</h4>
+                </li>
+            </ul>
           <div class="section-body">
             <div class="card note">
               <div class="card-body">
@@ -32,215 +39,117 @@
                       <a href="javascript:void(0)"
                         class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active"
                         id="all-category">
-                        <i data-feather="check-circle"></i><span class="d-md-block">All</span>
+                        <i data-feather="check-circle"></i><span class="d-md-block">@lang('dashboard.Add Client')</span>
                       </a>
                     </li>
-                    <li class="nav-item">
-                      <a href="javascript:void(0)"
-                        class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2"
-                        id="note-ka"> <i data-feather="briefcase"></i><span class="d-md-block">Georgian</span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="javascript:void(0)"
-                        class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 "
-                        id="note-en"> <i data-feather="users"></i><span class="d-md-block">English</span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="javascript:void(0)"
-                        class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2"
-                        id="note-ru"> <i data-feather="star"></i><span class="d-md-block">Russian</span></a>
-                    </li>
-                    <li class="nav-item ml-auto">
-                      <a href="#" class="btn btn-icon icon-left btn-success rounded-pill">
-                          <i class="fas fa-save"></i>@lang('dashboard.Save')</a>
-                    </li>
+
+
                   </ul>
                   <div class="tab-content bg-transparent">
                     <div id="note-full-container" class="note-has-grid row">
-                      <div class="col-md-4 single-note-item all-category note-en">
-                        <div class="note-card note-card-body note-bg-green">
-                          <span class="side-stick"></span>
-                          <div class="note-header">
-                            <h5 class="note-title text-truncate w-75 mb-0" data-noteheading="Birthday Gift for wife">English</h5>
-                            <div class="text-right w-25">
-                              <span class="mr-1 "><i class="far fa-star favourite-note font-17"></i></span>
-                              <span class="mr-1"><i class="far fa-trash-alt remove-note font-17"></i></span>
-                            </div>
-                          </div>
-                          <p class="note-date font-12">16 July 2020</p>
-                          <div class="note-content">
-                            <p class="note-inner-content"
-                              data-notecontent="Looking started he up perhaps against. How remainder all additions get elsewhere resources. ">
-                              Looking started he up perhaps against. How remainder all additions get elsewhere
-                              resources. </p>
-                          </div>
-                          <div class="d-flex align-items-center">
-                            <ul class="list-unstyled order-list m-b-0">
-                              <li class="team-member team-member-sm"><img class="rounded-circle"
-                                  src="assets/img/users/user-1.png" alt="user" data-toggle="tooltip" title=""
-                                  data-original-title="Wildan Ahdian"></li>
-                              <li class="team-member team-member-sm"><img class="rounded-circle"
-                                  src="assets/img/users/user-6.png" alt="user" data-toggle="tooltip" title=""
-                                  data-original-title="John Deo"></li>
-                              <li class="team-member team-member-sm"><img class="rounded-circle"
-                                  src="assets/img/users/user-3.png" alt="user" data-toggle="tooltip" title=""
-                                  data-original-title="Sarah Smith"></li>
-                              <li class="avatar avatar-sm"><span class="badge badge-primary">+2</span></li>
-                            </ul>
-                            <div class="ml-auto">
-                              <div class="category-selector btn-group">
-                                <a class="nav-link dropdown-toggle category-dropdown label-group p-0"
-                                  data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                                  aria-expanded="true">
-                                  <div class="category">
-                                    <div class="category-work"></div>
-                                    <div class="category-family"></div>
-                                    <div class="category-important"></div>
-                                    <span class="more-options text-dark"><i class="icon-options-vertical"></i></span>
-                                  </div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right category-menu">
-                                  <a class="note-work badge-group-item badge-work dropdown-item position-relative category-work"
-                                    href="javascript:void(0);">
-                                    <i class="far fa-dot-circle mr-2"></i>Work
-                                  </a>
-                                  <a class="note-family badge-group-item badge-family dropdown-item position-relative category-family"
-                                    href="javascript:void(0);">
-                                    <i class="far fa-dot-circle mr-2"></i> Family
-                                  </a>
-                                  <a class="note-important badge-group-item badge-important dropdown-item position-relative category-important"
-                                    href="javascript:void(0);">
-                                    <i class="far fa-dot-circle mr-2"></i> Important
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
 
-                      <div class="col-md-4 single-note-item all-category note-ka">
-                        <div class="note-card note-card-body note-bg-red">
-                          <span class="side-stick"></span>
-                          <div class="note-header">
-                            <h5 class="note-title text-truncate w-75 mb-0" data-noteheading="Mobile Rechart">Georgian</h5>
-                            <div class="text-right w-25">
-                              <span class="mr-1 "><i class="far fa-star favourite-note font-17"></i></span>
-                              <span class="mr-1"><i class="far fa-trash-alt remove-note font-17"></i></span>
-                            </div>
-                          </div>
-                          <p class="note-date font-12">10 January 2020</p>
-                          <div class="note-content">
-                            <p class="note-inner-content"
-                              data-notecontent="Ladies stairs enough esteem add fat all enable. Needed its design number winter see.">
-                              Ladies stairs enough esteem add fat all enable. Needed its design number winter see.</p>
-                          </div>
-                          <div class="d-flex align-items-center">
-                            <ul class="list-unstyled order-list m-b-0">
-                              <li class="team-member team-member-sm"><img class="rounded-circle"
-                                  src="assets/img/users/user-4.png" alt="user" data-toggle="tooltip" title=""
-                                  data-original-title="Wildan Ahdian"></li>
-                              <li class="team-member team-member-sm"><img class="rounded-circle"
-                                  src="assets/img/users/user-6.png" alt="user" data-toggle="tooltip" title=""
-                                  data-original-title="John Deo"></li>
-                              <li class="team-member team-member-sm"><img class="rounded-circle"
-                                  src="assets/img/users/user-1.png" alt="user" data-toggle="tooltip" title=""
-                                  data-original-title="Sarah Smith"></li>
-                              <li class="avatar avatar-sm"><span class="badge badge-primary">+1</span></li>
-                            </ul>
-                            <div class="ml-auto">
-                              <div class="category-selector btn-group">
-                                <a class="nav-link dropdown-toggle category-dropdown label-group p-0"
-                                  data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                                  aria-expanded="true">
-                                  <div class="category">
-                                    <div class="category-work"></div>
-                                    <div class="category-family"></div>
-                                    <div class="category-important"></div>
-                                    <span class="more-options text-dark"><i class="icon-options-vertical"></i></span>
-                                  </div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right category-menu">
-                                  <a class="note-work badge-group-item badge-work dropdown-item position-relative category-work"
-                                    href="javascript:void(0);">
-                                    <i class="far fa-dot-circle mr-2"></i>Work
-                                  </a>
-                                  <a class="note-family badge-group-item badge-family dropdown-item position-relative category-family"
-                                    href="javascript:void(0);">
-                                    <i class="far fa-dot-circle mr-2"></i> Family
-                                  </a>
-                                  <a class="note-important badge-group-item badge-important dropdown-item position-relative category-important"
-                                    href="javascript:void(0);">
-                                    <i class="far fa-dot-circle mr-2"></i> Important
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
 
-                      <div class="col-md-4 single-note-item all-category note-ru">
-                        <div class="note-card note-card-body note-bg-purple">
-                          <span class="side-stick"></span>
-                          <div class="note-header">
-                            <h5 class="note-title text-truncate w-75 mb-0"
-                              data-noteheading="Error solve in live website">Russian</h5>
-                            <div class="text-right w-25">
-                              <span class="mr-1 "><i class="far fa-star favourite-note font-17"></i></span>
-                              <span class="mr-1"><i class="far fa-trash-alt remove-note font-17"></i></span>
-                            </div>
-                          </div>
-                          <p class="note-date font-12">21 July 2020</p>
-                          <div class="note-content">
-                            <p class="note-inner-content"
-                              data-notecontent="Yourself off its pleasant ecstatic now law. Ye their mirth seems of songs.">
-                              Yourself off its pleasant ecstatic now law. Ye their mirth seems of songs.</p>
-                          </div>
-                          <div class="d-flex align-items-center">
-                            <ul class="list-unstyled order-list m-b-0">
-                              <li class="team-member team-member-sm"><img class="rounded-circle"
-                                  src="assets/img/users/user-8.png" alt="user" data-toggle="tooltip" title=""
-                                  data-original-title="Wildan Ahdian"></li>
-                              <li class="team-member team-member-sm"><img class="rounded-circle"
-                                  src="assets/img/users/user-2.png" alt="user" data-toggle="tooltip" title=""
-                                  data-original-title="John Deo"></li>
-                              <li class="team-member team-member-sm"><img class="rounded-circle"
-                                  src="assets/img/users/user-7.png" alt="user" data-toggle="tooltip" title=""
-                                  data-original-title="Sarah Smith"></li>
-                              <li class="avatar avatar-sm"><span class="badge badge-primary">+3</span></li>
-                            </ul>
-                            <div class="ml-auto">
-                              <div class="category-selector btn-group">
-                                <a class="nav-link dropdown-toggle category-dropdown label-group p-0"
-                                  data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                                  aria-expanded="true">
-                                  <div class="category">
-                                    <div class="category-work"></div>
-                                    <div class="category-family"></div>
-                                    <div class="category-important"></div>
-                                    <span class="more-options text-dark"><i class="icon-options-vertical"></i></span>
-                                  </div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right category-menu">
-                                  <a class="note-work badge-group-item badge-work dropdown-item position-relative category-work"
-                                    href="javascript:void(0);">
-                                    <i class="far fa-dot-circle mr-2"></i>Work
-                                  </a>
-                                  <a class="note-family badge-group-item badge-family dropdown-item position-relative category-family"
-                                    href="javascript:void(0);">
-                                    <i class="far fa-dot-circle mr-2"></i> Family
-                                  </a>
-                                  <a class="note-important badge-group-item badge-important dropdown-item position-relative category-important"
-                                    href="javascript:void(0);">
-                                    <i class="far fa-dot-circle mr-2"></i> Important
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+
+
+                                <form action="{{ route('clients.store') }}" class="needs-validation" novalidate="" method="POST"  enctype="multipart/form-data" >
+                                    @csrf
+                                    <div class="card-body">
+                                        <div class="form-row">
+                                            @foreach(config('translatable.locales') as $locale)
+                                                <div class="form-group col-md-4">
+                                                    <label>@lang('dashboard.Name') ({{ strtoupper($locale) }})</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">
+                                                                <i class="fas fa-file-alt"></i>
+                                                            </div>
+                                                        </div>
+                                                        <input type="text" name="{{ $locale }}[name]" value="{{ old($locale . '.name') }}" class="form-control marker" required="">
+                                                        <div class="invalid-feedback">
+                                                            {{__('Opss Name is Required')}} ! !
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                            <div class="row">
+                                                <div class="form-group col-md-4">
+                                                    <label>@lang('dashboard.Image')</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">
+                                                                <i class="fas fa-image"></i>
+                                                            </div>
+                                                        </div>
+                                                        <input type="file" name="image"  class="form-control file" required>
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        {{__('Opss, Image is Required')}} ! !
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                    <label>@lang('dashboard.Link')</label>
+                                                    <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                        <i class="fas fa-globe"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text"  name="link" class="form-control phone-number" placeholder="@lang('dashboard.Link')" required="">
+                                                        <div class="invalid-feedback">
+                                                            {{__('Opss Price is Required')}} !
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                    <label for="status">{{__('Select a Status')}}</label>
+                                                    <select class="form-control" name="status">
+                                                        <option class="badge badge-success badge-shadow" value="enable">
+                                                            <i class="fas fa-check-circle"></i>{{ __('Show') }}
+                                                        </option>
+
+                                                        <option class="badge badge-danger badge-shadow" value="disabled">
+                                                            <i class="fas fa-check-circle"></i>{{ __('Hide') }}
+                                                        </option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        {{__('Opss , Status is Required')}} !
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            @foreach(config('translatable.locales') as $locale)
+                                                <div class="form-group col-md-12">
+                                                    <div class="form-group mb-0">
+                                                        <label>@lang('dashboard.Description') ({{ strtoupper($locale) }})</label>
+                                                        <textarea class="form-control" name="{{ $locale }}[description]"></textarea>
+                                                        <div class="invalid-feedback">
+                                                            {{__('Opss , Description is Required')}} !
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+
+                                        </div>
+                                    </div>
+
+                                    <div class="card-footer text-right">
+                                        <button class="btn btn-success">
+                                            <i class="fas fa-save"></i> @lang('dashboard.Save')
+                                        </button>
+                                        <a href="{{ route ('clients.index') }}" class="btn btn-info">
+                                            <i class="fas fa-arrow-circle-left"></i> @lang('dashboard.Back')
+                                        </a>
+                                    </div>
+                                </form>
+
+
+
+
+
+
+
 
                     </div>
                   </div>
