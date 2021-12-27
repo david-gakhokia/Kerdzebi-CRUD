@@ -42,6 +42,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::get('currency', [DashboardController::class, 'currency'])->name('currency');
+
 
     // Route::get('dashboard', function () {
     //     return view('backend.dashboard');

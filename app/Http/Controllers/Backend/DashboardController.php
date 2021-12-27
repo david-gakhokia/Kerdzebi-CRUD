@@ -7,6 +7,10 @@ use App\Models\Page;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use GuzzleHttp\Client as GuzzleHttpClient;
+use GuzzleHttp\Exception\RequestException;
+
+
 
 class DashboardController extends Controller
 {
@@ -31,6 +35,30 @@ class DashboardController extends Controller
             ])
         );
     }
+
+
+    public function currency()
+    {
+        $requestContent = [
+            'headers' => [
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json'
+            ]
+        ];
+
+
+        $client = new GuzzleHttpClient();
+
+        $apiRequest = $client->request('GET', 'https://nbg.gov.ge/gw/api/ct/monetarypolicy/currencies/ka/json', $requestContent);
+
+        $currencies = json_decode($apiRequest->getBody());
+
+        return view('backend.currency',compact('currencies'));
+
+    }
+
+
+
 
     /**
      * Show the form for creating a new resource.

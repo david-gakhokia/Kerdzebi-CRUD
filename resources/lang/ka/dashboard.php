@@ -8,6 +8,7 @@ return array (
   'Clients' => 'კლიენტები',
   'Confirm Password' => 'პაროლის დადასტურება',
   'Contact' => 'კონტაქტი',
+  'Currency' => 'ვალუტა',
   'Dashboard' => 'მთავარი გვერდი',
   'Date' => 'დრო',
   'Delete' => 'წაშლა',

@@ -8,6 +8,7 @@ return array (
   'Clients' => 'Clients',
   'Confirm Password' => 'Confirm Password',
   'Contact' => 'Contact',
+  'Currency' => 'Currency',
   'Dashboard' => 'Dashboard',
   'Date' => 'Date',
   'Delete' => 'Delete',
@@ -53,4 +54,5 @@ return array (
   'View Permission' => 'View Permission',
   'View Role' => 'View Role',
   'View Website' => 'View Website',
+  'quantity' => 'quantity',
 );
